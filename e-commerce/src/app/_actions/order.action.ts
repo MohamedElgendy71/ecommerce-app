@@ -34,7 +34,7 @@ export async function creatVisaOrder(cartId: string, shippingAddress: shippingAd
     const token = await getMyToken()
 
 
-    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`, {
+    const res = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=https://ecommerce-app-ea49.vercel.app`, {
         method: "POST",
 
         headers: {
@@ -46,7 +46,7 @@ export async function creatVisaOrder(cartId: string, shippingAddress: shippingAd
 
     })
 
-    const finalRes = res.json()
+    const finalRes = await res.json()
 
     return finalRes
 
