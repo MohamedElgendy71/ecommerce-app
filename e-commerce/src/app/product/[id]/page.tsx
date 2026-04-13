@@ -10,7 +10,7 @@ import { TbPointFilled } from 'react-icons/tb'
 
 
 
-export default async function page({ params }) {
+export default async function page({ params } :any) {
 
     const myParams = await params
 

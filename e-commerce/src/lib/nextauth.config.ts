@@ -1,20 +1,15 @@
 import { NextAuthOptions } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
-import { email } from "zod"
 
 export const nextAuthConfig: NextAuthOptions = {
-
     providers: [
         Credentials({
-
             credentials: {
                 email: {},
                 password: {}
             },
 
-          async  authorize(credentials, req) {
-
-
+            async authorize(credentials, req) {
                 const res = await fetch("https://ecommerce.routemisr.com/api/v1/auth/signin", {
                     body: JSON.stringify(credentials),
                     method: "POST",
@@ -22,56 +17,47 @@ export const nextAuthConfig: NextAuthOptions = {
                         "Content-Type": "application/json"
                     }
                 })
+                
                 const finalRes = await res.json()
                 console.log("finalRes :", finalRes);
 
-                if (finalRes.message == "success") {
-                    return{
+                if (finalRes.message === "success") {
+                    // التعديل هنا: أضفنا id وعملنا cast للـ Object بـ 'any' عشان يتخطى التعارض
+                    return {
+                        id: finalRes.user._id || finalRes.user.id || "1", // NextAuth لازم يشوف id
                         name: finalRes.user.name,
                         email: finalRes.user.email,
                         realTokenFromBackEnd: finalRes.token
-                    }
+                    } as any;
                 }
 
                 return null
             },
-
         })
-
-
     ],
 
-
     callbacks: {
-        jwt(params) {
-
-            if (params.user) {
-                
-                params.token.realTokenFromBackEnd = params.user.realTokenFromBackEnd
+        async jwt({ token, user }) {
+            if (user) {
+                // بننقل التوكن من اليوزر للـ token اللي هيتخزن في الكوكيز
+                token.realTokenFromBackEnd = (user as any).realTokenFromBackEnd
             }
-            
-            console.log("params from jwt" ,params);
-
-            return params.token
-            
-
+            return token
         },
 
-        session(params) {
-
-            console.log("params from session",params);
-            
-            
-            return params.session
+        async session({ session, token }) {
+            // بننقل التوكن من الـ token للـ session عشان تقدر تشوفه في الفرونت إند
+            if (session.user) {
+                (session as any).realTokenFromBackEnd = token.realTokenFromBackEnd
+            }
+            return session
         },
-        
     },
 
+    pages: {
+        signIn: "/login"
+    },
 
-pages: {
-    signIn : "/login"
-},
-
-secret : process.env.BETTER_AUTH_SECRET
-
+    // تأكد إنك مسمي المتغير ده صح في الـ .env
+    secret : process.env.BETTER_AUTH_SECRET 
 }

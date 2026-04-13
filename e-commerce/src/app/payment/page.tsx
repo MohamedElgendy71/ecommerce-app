@@ -67,7 +67,7 @@ export default function CheckoutPage() {
         resolver: zodResolver(paymentSchema)
     })
 
-    async function handlePayment(value) {
+    async function handlePayment(value : any) {
 
         console.log("values", value);
 
@@ -369,7 +369,7 @@ export default function CheckoutPage() {
                     <div className="p-5">
 
                         <div className="space-y-4 mb-4">
-                            {cartProducts?.map((item) => (
+                            {cartProducts?.map((item : any) => (
                                 <div key={item.product._id} className="flex justify-between items-center text-sm border-b pb-2 gap-3">
                                     <div className="flex items-center gap-3">
                                         <div className="w-16 h-16 flex-shrink-0 overflow-hidden rounded-md border bg-gray-50">

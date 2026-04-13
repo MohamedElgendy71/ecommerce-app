@@ -216,7 +216,7 @@ export default function Navbar() {
   )
 }
 
-function ListItem({ title, children, href, ...props }) {
+function ListItem({ title, children, href, ...props } : any) {
   return (
     <li {...props} className="p-2 hover:bg-gray-100 rounded-lg">
       <Link href={href}>

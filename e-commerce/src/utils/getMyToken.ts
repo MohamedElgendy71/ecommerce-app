@@ -24,7 +24,7 @@ export async function getMyToken() {
   
 
   console.log("myTokenAfterDecoded", myTokenAfterDecoded);
-  console.log("realTokenFromBackEnd", myTokenAfterDecoded.realTokenFromBackEnd);
+  console.log("realTokenFromBackEnd", myTokenAfterDecoded?.realTokenFromBackEnd);
 
   return myTokenAfterDecoded?.realTokenFromBackEnd || null
 
