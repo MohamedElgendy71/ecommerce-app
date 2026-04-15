@@ -83,10 +83,6 @@ export default function Navbar() {
               <NavigationMenuContent>
                 <ul className="w-72 p-2 flex flex-col gap-1">
                   <li><Link className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/AllCategory">All Categories</Link></li>
-                  <li><a className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/categories/women">Women's Fashion</a></li>
-                  <li><a className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/categories/men">Men's Fashion</a></li>
-                  <li><a className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/categories/electronics">Electronics</a></li>
-                  <li><a className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/categories/beauty-health">Beauty & Health</a></li>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
@@ -184,18 +180,15 @@ export default function Navbar() {
               </button>
 
               {mobileCategoryOpen && (
-                <ul className="pl-4 mt-2 space-y-2 text-gray-600">
-                  <li><Link href="#">Category 1</Link></li>
-                  <li><Link href="#">Category 2</Link></li>
-                  <li><Link href="#">Category 3</Link></li>
-                </ul>
+                <ul className="w-72 p-2 flex flex-col gap-1">
+                  <li><Link className="block px-3 py-2 hover:bg-gray-100 rounded-md" href="/AllCategory">All Categories</Link></li>                </ul>
               )}
             </div>
 
             <Link href="/brands">Brands</Link>
 
             {
-              session.data ? <Button className="cursor-pointer w-full md:w-auto">Log Out</Button> : <>
+              session.data ? <Button className="cursor-pointer w-full md:w-auto" onClick={handelLogOut}>Log Out</Button> : <>
                 <Link href="/login">Sign In</Link>
                 <Link href="/signUp">Sign Up</Link></>
             }
@@ -206,7 +199,9 @@ export default function Navbar() {
             {/* Icons */}
             <div className="flex gap-4 text-gray-600 pt-4">
               <FaRegHeart />
-              <FaShoppingCart />
+              <Link className="" href={"/cart"}>
+                <FaShoppingCart />
+              </Link>
               <CgProfile />
             </div>
           </div>
@@ -216,7 +211,7 @@ export default function Navbar() {
   )
 }
 
-function ListItem({ title, children, href, ...props } : any) {
+function ListItem({ title, children, href, ...props }: any) {
   return (
     <li {...props} className="p-2 hover:bg-gray-100 rounded-lg">
       <Link href={href}>
