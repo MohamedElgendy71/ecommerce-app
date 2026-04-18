@@ -18,10 +18,6 @@ export default function ProductCard({ product }: ProductCardPropsType) {
 
                 <div className='absolute top-4 right-1 flex flex-col gap-3 text-gray-600'>
 
-                    <div className='bg-white cursor-pointer border shadow-2xl h-8 w-8 rounded-full flex items-center justify-center'><FaRegHeart /></div>
-
-                    <div className='bg-white cursor-pointer border shadow-2xl h-8 w-8 rounded-full flex items-center justify-center '><TfiReload /></div>
-
                     <Link href={`/product/${product.id}`} className='bg-white cursor-pointer border shadow-2xl h-8 w-8 rounded-full flex items-center justify-center'><FaEye /></Link>
 
 

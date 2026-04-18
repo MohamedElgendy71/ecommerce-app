@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext } from "react"
+import React, { useContext,  } from "react"
 import Link from "next/link"
 import {
   NavigationMenu,
@@ -19,7 +19,10 @@ import { signOut, useSession } from "next-auth/react"
 import { Button } from "@/components/ui/button"
 import { cartContext } from "../_context/CartContextProvider"
 
-export default function Navbar() {
+export default  function Navbar() {
+
+  
+  
 
   const { numOfCartItems } = useContext(cartContext)
 
@@ -36,7 +39,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-gray-50 py-3 px-5 md:px-20 relative">
+    <nav  className="bg-gray-50 py-3 px-5 md:px-20 relative">
 
       {/* TOP NAV */}
       <div className="flex justify-between items-center">
@@ -96,7 +99,6 @@ export default function Navbar() {
             {/* Icons */}
             <div className="flex items-center gap-3 text-gray-600">
 
-              <Link href={"/"}><FaRegHeart /></Link>
 
 
               <div className="relative inline-block">
@@ -116,7 +118,6 @@ export default function Navbar() {
             {
 
               session.data ? <>
-                <Link href={"/"}><CgProfile /></Link>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                     <Button className="cursor-pointer bg-black hover:bg-black" onClick={handelLogOut}>Log Out</Button>
@@ -197,13 +198,21 @@ export default function Navbar() {
 
 
             {/* Icons */}
-            <div className="flex gap-4 text-gray-600 pt-4">
-              <FaRegHeart />
-              <Link className="" href={"/cart"}>
-                <FaShoppingCart />
-              </Link>
-              <CgProfile />
-            </div>
+            <Link
+              href="/cart"
+              className="flex items-center justify-between px-4 py-3 border-b"
+            >
+              {/* الشمال */}
+              <div className="flex items-center gap-2">
+                <FaShoppingCart className="text-lg" />
+                <span className="text-sm">Cart</span>
+              </div>
+
+              {/* اليمين (العدد) */}
+              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                {numOfCartItems}
+              </span>
+            </Link>
           </div>
         </div>
       )}

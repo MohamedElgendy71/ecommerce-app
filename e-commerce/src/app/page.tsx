@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, } from 'react'
 import ProductCard from './_components/productCard'
 import { getAllProducts } from '@/services/Products'
 import MySlider from './_components/MySlider'
@@ -12,6 +12,7 @@ import { FaShieldAlt, FaTruck } from 'react-icons/fa'
 import { SlEarphonesAlt } from 'react-icons/sl'
 import { HiH3 } from 'react-icons/hi2'
 import CategorySkeleton from './_components/skeleton/CategorySkeleton'
+
 
 
 const ShopByCategoryAsLazyComp = lazy(() => import("./_components/ShopByCategory"))
@@ -69,7 +70,10 @@ const slides = [
   }
 ];
 
+
 export default async function page() {
+
+
 
 
 
@@ -79,6 +83,8 @@ export default async function page() {
 
   return (
     <>
+
+
       <div className='relative h-96 w-full overflow-hidden'>
 
 
