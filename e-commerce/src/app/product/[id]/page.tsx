@@ -1,3 +1,5 @@
+import Counter from '@/app/_components/Counter'
+import ProductActions from '@/app/_components/ProductActions'
 import { Button } from '@/components/ui/button'
 import { getProductByID } from '@/services/Products'
 import { Heart } from 'lucide-react'
@@ -10,7 +12,9 @@ import { TbPointFilled } from 'react-icons/tb'
 
 
 
-export default async function page({ params } :any) {
+export default async function page({ params }: any) {
+
+
 
     const myParams = await params
 
@@ -48,18 +52,7 @@ export default async function page({ params } :any) {
                     <div className='w-full h-0.25 my-3 bg-gray-200'></div>
                     <p className='text-gray-600 my-3'>{product?.description}</p>
                     <p className='text-gray-600 my-3'>Quantity</p>
-                    <div className='flex items-center gap-5 my-3'>
-                        <div className='border w-fit border-2 rounded-xl border-gray-200 py-2 px-6'>
-                            <p className='flex items-center gap-5 text-gray-600'><FaMinus className='cursor-pointer' /> 1 <FaPlus className='cursor-pointer' /> </p>
-                        </div>
-                        <div className='text-gray-600 my-3'>
-                            <p>220 available</p>
-                        </div>
-                    </div>
-                    <div className='flex items-center justify-between bg-[#F9FAFB] rounded-xl p-3 my-3 '>
-                        <p className='text-gray-600'>Total Price:</p>
-                        <h3 className='text-[#16A34A] text-2xl font-bold'>149</h3>
-                    </div>
+                    <ProductActions price={product?.price ?? 0} />
                     <div className='my-3 flex flex-col md:flex-row gap-2'>
                         <Button className='flex-1 text-xl bg-[#16A34A] py-3 md:py-5.5 cursor-pointer'>
                             <FaCartShopping /> Add to Cart
@@ -68,12 +61,6 @@ export default async function page({ params } :any) {
                         <Button className='flex-1 text-xl bg-[#101828] py-3 md:py-5.5 cursor-pointer'>
                             <PiLightningFill /> Buy Now
                         </Button>
-                    </div>
-                    <div className='grid grid-cols-12'>
-                        <Button className='cursor-pointer text-xl bg-transparent col-span-10 md:col-span-11 text-black border border-2 border-gray-200 w-full  py-5.5'><Heart /> Add to Wishlist</Button>
-                        <div className='cursor-pointer text-xl bg-transparent col-span-2 md:col-span-1 text-black border border-2 border-gray-200 flex justify-center items-center h-12 w-12 ms-2 rounded-xl'>
-                            <FaShareAlt />
-                        </div>
                     </div>
                     <div className='w-full h-0.25 my-3 bg-gray-200'></div>
                     <div className='flex flex-col md:flex-row gap-4 md:justify-between my-5'>

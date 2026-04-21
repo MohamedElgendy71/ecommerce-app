@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import MySessionProvider from "./_providers/MySessionProvider";
 import Footer from "./_components/Footer";
 import CartContextProvider from "./_context/CartContextProvider";
+import { SearchProvider } from "./_context/SearchContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,17 +36,19 @@ export default function RootLayout({
 
         <MySessionProvider>
 
-          <CartContextProvider>
+
+
+            <CartContextProvider>
 
 
 
-          <Toaster />
-          <Navbar />
-          {children}
-          <Footer/>
+              <Toaster />
+              <Navbar />
+              {children}
+              <Footer />
 
-          </CartContextProvider>
-          
+            </CartContextProvider>
+
         </MySessionProvider>
 
       </body>
