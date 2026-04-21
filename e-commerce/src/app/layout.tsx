@@ -6,7 +6,6 @@ import { Toaster } from "sonner";
 import MySessionProvider from "./_providers/MySessionProvider";
 import Footer from "./_components/Footer";
 import CartContextProvider from "./_context/CartContextProvider";
-import { SearchProvider } from "./_context/SearchContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
